@@ -14,3 +14,27 @@ body {
   display:flex; flex-direction:column; justify-content:center;
   min-height:100vh;
 }
+
+   /* Define the box style */
+        .nice-box {
+            background-color: #f0f0f0; /* Background color */
+            border: 1px solid #ddd; /* Border */
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); /* Shadow effect */
+            padding: 20px; /* Padding inside the box */
+            margin: 10px; /* Margin around the box */
+        }
+
+        /* Style for headings inside the boxes */
+        .nice-box h2 {
+            font-size: 18px;
+            margin-top: 0;
+            color: #333;
+        }
+
+        /* Style for paragraph text inside the boxes */
+        .nice-box p {
+            font-size: 14px;
+            line-height: 1.4;
+            color: #666;
+        }
