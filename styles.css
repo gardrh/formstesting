@@ -18,6 +18,12 @@ body {
 
 }
 
+.container input[type="text"] {
+            width: 80%; /* Set the width to 100% to expand to the container's width */
+            height: 20px;
+            padding: 10px; /* Adjust padding for better appearance */
+            font-size: 16px; /* Adjust font size */
+
 header {
   display: flex;
   justify-content: center;
