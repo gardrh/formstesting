@@ -9,3 +9,17 @@ input,
 label {
   margin: 0.4rem 0;
 }
+
+html, body {
+    height: 100%;
+}
+
+html {
+    display: table;
+    margin: auto;
+}
+
+body {
+    display: table-cell;
+    vertical-align: middle;
+}
