@@ -4,15 +4,21 @@
     <title>Research Project Tracker</title>
 </head>
 <body>
-    <h1>Research Project Tracker</h1>
-    <form action="submit.php" method="post">
-        <label for="project_title">Project Title:</label>
-        <input type="text" id="project_title" name="project_title" required><br><br>
+<form name="submit-to-google-sheet">
+  <input name="email" type="email" placeholder="Email" required>
+  <button type="submit">Send</button>
+</form>
 
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required><br><br>
+<script>
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbxIdehdScZyKrPhVb2ieREBeX93PFybPl79zSWkFwoWCT3ydimbOWHeXD3MvlRg2aCgvQ/exec'
+  const form = document.forms['submit-to-google-sheet']
 
-        <input type="submit" value="Submit">
-    </form>
+  form.addEventListener('submit', e => {
+    e.preventDefault()
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      .then(response => console.log('Success!', response))
+      .catch(error => console.error('Error!', error.message))
+  })
+</script>
 </body>
 </html>
