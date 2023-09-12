@@ -19,7 +19,7 @@
         </div>
         <div class=container>
 	    <h2>Om datainnsamlingen</h2>
-<form id="submit-to-google-sheet">
+<form name="submit-to-google-sheet">
     <h2>E-post</h2>
   <input name="E-post" type="email" placeholder="Email" required>
     
@@ -70,30 +70,17 @@
         </form>
     </div>
 
-    <script>
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbxIdehdScZyKrPhVb2ieREBeX93PFybPl79zSWkFwoWCT3ydimbOWHeXD3MvlRg2aCgvQ/exec';
-        const form = document.getElementById('submit-to-google-sheet');
-        const submitButton = document.getElementById('submitButton');
+<script>
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbxIdehdScZyKrPhVb2ieREBeX93PFybPl79zSWkFwoWCT3ydimbOWHeXD3MvlRg2aCgvQ/exec'
+  const form = document.forms['submit-to-google-sheet']
 
-        form.addEventListener('submit', e => {
-            e.preventDefault();
-
-            // Perform the form submission (Google Sheets)
-            fetch(scriptURL, { method: 'POST', body: new FormData(form) })
-                .then(response => {
-                    console.log('Success!', response);
-
-                    // Add animation to move the button slightly
-                    submitButton.style.transform = 'translateY(5px)';
-
-                    // Delay the redirection to thank_you.html
-                    setTimeout(() => {
-                        window.location.href = 'thank_you.html';
-                    }, 500); // Adjust the delay time as needed
-                })
-                .catch(error => console.error('Error!', error.message));
-        });
-    </script>
+  form.addEventListener('submit', e => {
+    e.preventDefault()
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      .then(response => console.log('Success!', response))
+      .catch(error => console.error('Error!', error.message))
+  })
+</script>
 
 </body>
 </html>
