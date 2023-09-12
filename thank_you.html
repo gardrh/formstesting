@@ -6,5 +6,20 @@
 <body>
     <h1>Thank You for Your Submission</h1>
     <p>Your form has been successfully submitted.</p>
+
+    <!-- Download link for the PDF -->
+    <a href="#" id="downloadLink">Download Form Data as PDF</a>
+
+    <script>
+        const downloadLink = document.getElementById('downloadLink');
+
+        // Check if PDF data is available and set the download link
+        if (pdfData) {
+            downloadLink.href = pdfData;
+            downloadLink.download = 'form_data.pdf';
+        } else {
+            downloadLink.style.display = 'none';
+        }
+    </script>
 </body>
 </html>
