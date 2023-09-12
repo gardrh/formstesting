@@ -5,7 +5,7 @@
     <link rel="stylesheet" type="text/css" href="styles.css" />
     	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
 </head>
 <body>
 	<div class = "container">
@@ -72,7 +72,7 @@ Det er viktig å sette seg inn i etiske retningslinjer når du skal gjennomføre
   <input name="Planlagt sletting" type="date" id="start"  value="2024-01-25" min="2023-01-01" max="2040-12-31" />
 	
     <h2>Send inn</h2>
-  <button type="submit">Send inn</button>
+  <button type="submit" id="submitButton">Send inn</button>
 </form>
 </div>
 <script>
@@ -86,5 +86,34 @@ Det er viktig å sette seg inn i etiske retningslinjer når du skal gjennomføre
       .catch(error => console.error('Error!', error.message))
   })
 </script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+<script>
+    const form = document.forms['submit-to-google-sheet'];
+    const submitButton = document.getElementById('submitButton');
+    let pdfData = null;
+
+    form.addEventListener('submit', e => {
+        e.preventDefault();
+
+        // Generate a PDF from form data
+        const pdf = new jsPDF();
+        pdf.text(10, 10, 'Form Data:');
+        const formData = new FormData(form);
+        let yPos = 20;
+        for (const pair of formData.entries()) {
+            pdf.text(10, yPos, `${pair[0]}: ${pair[1]}`);
+            yPos += 10;
+        }
+
+        // Store the PDF data
+        pdfData = pdf.output('datauristring');
+
+        // Redirect to the thank you page
+        window.location.href = 'thank_you.html';
+    });
+</script>
+
 </body>
 </html>
