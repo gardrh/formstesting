@@ -19,7 +19,7 @@
         </div>
         <div class=container>
 	    <h2>Om datainnsamlingen</h2>
-<form name="submit-to-google-sheet">
+<form id="submit-to-google-sheet">
     <h2>E-post</h2>
   <input name="E-post" type="email" placeholder="Email" required>
     
@@ -65,8 +65,8 @@
   <input name="Planlagt sletting" type="date" id="start"  value="2024-01-25" min="2023-01-01" max="2040-12-31" />
 	</div>
 	
-        <div class=container>
-<button type="submit" id="submitButton">Send inn</button>
+<div class="container">
+            <button type="submit" id="submitButton">Send inn</button>
         </form>
     </div>
 
@@ -78,17 +78,19 @@
         form.addEventListener('submit', e => {
             e.preventDefault();
 
-            // Add animation to move the button slightly
-            submitButton.style.transform = 'translateY(5px)';
-
-            // Delay the redirection to thank_you.html
-            setTimeout(() => {
-                window.location.href = 'thank_you.html';
-            }, 500); // Adjust the delay time as needed
-
-            // Perform the form submission (Google Sheets) if needed
+            // Perform the form submission (Google Sheets)
             fetch(scriptURL, { method: 'POST', body: new FormData(form) })
-                .then(response => console.log('Success!', response))
+                .then(response => {
+                    console.log('Success!', response);
+
+                    // Add animation to move the button slightly
+                    submitButton.style.transform = 'translateY(5px)';
+
+                    // Delay the redirection to thank_you.html
+                    setTimeout(() => {
+                        window.location.href = 'thank_you.html';
+                    }, 500); // Adjust the delay time as needed
+                })
                 .catch(error => console.error('Error!', error.message));
         });
     </script>
