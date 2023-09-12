@@ -22,19 +22,19 @@ body {
             width: 80%; /* Set the width to 100% to expand to the container's width */
             height: 30px;
             padding: 10px; /* Adjust padding for better appearance */
-            font-size: 16px; /* Adjust font size */
+            font-size: 16px; /* Adjust font size */}
 
 .container input[type="email"] {
             width: 80%; /* Set the width to 100% to expand to the container's width */
             height: 20px;
             padding: 10px; /* Adjust padding for better appearance */
-            font-size: 16px; /* Adjust font size */
+            font-size: 16px; /* Adjust font size */}
 
   .container input[type="submit"] {
             width: 80%; /* Set the width to 100% to expand to the container's width */
             height: 20px;
             padding: 10px; /* Adjust padding for better appearance */
-            font-size: 16px; /* Adjust font size */
+            font-size: 16px; /* Adjust font size */}
 
 
 header {
