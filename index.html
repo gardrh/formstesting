@@ -101,10 +101,11 @@ Det er viktig å sette seg inn i etiske retningslinjer når du skal gjennomføre
     formData['Lagring'] = form.elements['Lagring'].value;
     formData['Tilgang'] = form.elements['Tilgang'].value;
     formData['Planlagt sletting'] = form.elements['Planlagt sletting'].value;
+	  }
 
     // Move the submit button
     const submitButton = document.getElementById('submitButton');
-    submitButton.style.transform = 'translateX(100%)';
+    submitButton.style.transform = 'translateY(20%)';
 
     // Submit the form data
     fetch(scriptURL, { method: 'POST', body: new FormData(form) })
