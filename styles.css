@@ -97,18 +97,25 @@ p {
 }
 
 /* Button styles */
-select,
-button {
-  display: block;
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 20px;
-  font-size: 30px;
-  border-radius: 5px;
-   transform: translate(30px, 20px) rotate(20deg);
-  border: none;
+.button {
+  padding: 15px 25px;
+  font-size: 24px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: #fff;
   background-color: #c30000;
-  color: #ffffff;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
 }
 
+.button:hover {background-color: #04AA6D	}
+
+.button:active {
+  background-color: #04AA6D;
+  box-shadow: 0 7px #666;
+  transform: translateY(6px);
+}
+</sty
 
