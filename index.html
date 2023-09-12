@@ -3,9 +3,9 @@
 <head>
     <title>Innsikt og datahåndtering i NAV</title>
     <link rel="stylesheet" type="text/css" href="styles.css" />
-    	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
 </head>
 <body>
 	<div class = "container">
@@ -85,34 +85,6 @@ Det er viktig å sette seg inn i etiske retningslinjer når du skal gjennomføre
       .then(response => console.log('Success!', response))
       .catch(error => console.error('Error!', error.message))
   })
-</script>
-
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
-<script>
-    const form = document.forms['submit-to-google-sheet'];
-    const submitButton = document.getElementById('submitButton');
-    let pdfData = null;
-
-    form.addEventListener('submit', e => {
-        e.preventDefault();
-
-        // Generate a PDF from form data
-        const pdf = new jsPDF();
-        pdf.text(10, 10, 'Form Data:');
-        const formData = new FormData(form);
-        let yPos = 20;
-        for (const pair of formData.entries()) {
-            pdf.text(10, yPos, `${pair[0]}: ${pair[1]}`);
-            yPos += 10;
-        }
-
-        // Store the PDF data
-        pdfData = pdf.output('datauristring');
-
-        // Redirect to the thank you page
-        window.location.href = 'thank_you.html';
-    });
 </script>
 
 </body>
