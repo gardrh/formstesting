@@ -79,16 +79,48 @@ Det er viktig å sette seg inn i etiske retningslinjer når du skal gjennomføre
 </div>
 
 <script>
-  const scriptURL = 'https://script.google.com/macros/s/AKfycbxIdehdScZyKrPhVb2ieREBeX93PFybPl79zSWkFwoWCT3ydimbOWHeXD3MvlRg2aCgvQ/exec'
-  const form = document.forms['submit-to-google-sheet']
+  const scriptURL =
+    'https://script.google.com/macros/s/AKfycbxIdehdScZyKrPhVb2ieREBeX93PFybPl79zSWkFwoWCT3ydimbOWHeXD3MvlRg2aCgvQ/exec';
+  const form = document.forms['submit-to-google-sheet'];
 
-  form.addEventListener('submit', e => {
-    e.preventDefault()
-    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-      .then(response => console.log('Success!', response))
-      .catch(error => console.error('Error!', error.message))
-  })
+  let formData = {}; // Store form data in an object
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    // Collect form data and store it in the formData object
+    formData['E-post'] = form.elements['E-post'].value;
+    formData['Kontaktperson'] = form.elements['Kontaktperson'].value;
+    formData['Prosjekttittel'] = form.elements['Prosjekttittel'].value;
+    formData['Kort beskrivelse'] = form.elements['Kort beskrivelse'].value;
+    formData['Planlagt sluttdato'] = form.elements['Planlagt sluttdato'].value;
+    formData['Deltakere'] = form.elements['Deltakere'].value;
+    formData['Målgruppe'] = form.elements['Målgruppe'].value;
+    formData['Enhet'] = form.elements['Enhet'].value;
+    formData['Metode og rekruttering'] = form.elements['Metode og rekruttering'].value;
+    formData['Lagring'] = form.elements['Lagring'].value;
+    formData['Tilgang'] = form.elements['Tilgang'].value;
+    formData['Planlagt sletting'] = form.elements['Planlagt sletting'].value;
+
+    // Move the submit button
+    const submitButton = document.getElementById('submitButton');
+    submitButton.style.transform = 'translateX(100%)';
+
+    // Submit the form data
+    fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+      .then((response) => {
+        console.log('Success!', response);
+
+        // Redirect to the thank you page
+        window.location.href = `thank_you.html?${new URLSearchParams(formData).toString()}`;
+      })
+      .catch((error) => {
+        console.error('Error!', error.message);
+        // You can handle errors here if needed
+      });
+  });
 </script>
+
 
 
 
