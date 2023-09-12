@@ -78,17 +78,23 @@ Det er viktig å sette seg inn i etiske retningslinjer når du skal gjennomføre
 </form>
 </div>
 
-    <script>
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbxIdehdScZyKrPhVb2ieREBeX93PFybPl79zSWkFwoWCT3ydimbOWHeXD3MvlRg2aCgvQ/exec';
-        const form = document.forms['submit-to-google-sheet'];
+<script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxIdehdScZyKrPhVb2ieREBeX93PFybPl79zSWkFwoWCT3ydimbOWHeXD3MvlRg2aCgvQ/exec';
+    const form = document.forms['submit-to-google-sheet'];
+    const submitButton = document.getElementById('submitButton');
 
-        form.addEventListener('submit', e => {
-            e.preventDefault();
-            fetch(scriptURL, { method: 'POST', body: new FormData(form) })
-                .then(response => console.log('Success!', response))
-                .catch(error => console.error('Error!', error.message))
-        });
-    </script>
+    form.addEventListener('submit', e => {
+        e.preventDefault();
+
+        // Serialize form data to URL parameters
+        const formData = new FormData(form);
+        const params = new URLSearchParams(formData).toString();
+
+        // Redirect to the thank you page with form data as URL parameters
+        window.location.href = `thank_you.html?${params}`;
+    });
+</script>
+
 
 
 </body>
