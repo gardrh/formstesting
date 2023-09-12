@@ -66,13 +66,18 @@
 	</div>
 	
         <div class=container>
-  <button type="submit">Send inn</button>
-</form>
-</div>
-<script>
-  const scriptURL = 'https://script.google.com/macros/s/AKfycbxIdehdScZyKrPhVb2ieREBeX93PFybPl79zSWkFwoWCT3ydimbOWHeXD3MvlRg2aCgvQ/exec';
-  const form = document.forms['submit-to-google-sheet'];
-  const submitButton = document.getElementById('submitButton');
+<button type="submit" id="submitButton">Send inn</button>
+        </form>
+    </div>
+
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxIdehdScZyKrPhVb2ieREBeX93PFybPl79zSWkFwoWCT3ydimbOWHeXD3MvlRg2aCgvQ/exec';
+        const form = document.getElementById('submit-to-google-sheet');
+        const submitButton = document.getElementById('submitButton');
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+
             // Add animation to move the button slightly
             submitButton.style.transform = 'translateY(5px)';
 
@@ -81,12 +86,12 @@
                 window.location.href = 'thank_you.html';
             }, 500); // Adjust the delay time as needed
 
-  form.addEventListener('submit', e => {
-    e.preventDefault()
-    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-      .then(response => console.log('Success!', response))
-      .catch(error => console.error('Error!', error.message))
-  })
-</script>
+            // Perform the form submission (Google Sheets) if needed
+            fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+                .then(response => console.log('Success!', response))
+                .catch(error => console.error('Error!', error.message));
+        });
+    </script>
+
 </body>
 </html>
