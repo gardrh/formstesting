@@ -97,7 +97,8 @@ p {
 }
 
 /* Button styles */
-.button {
+select,
+button {
   padding: 15px 25px;
   font-size: 24px;
   text-align: center;
@@ -110,12 +111,11 @@ p {
   box-shadow: 0 9px #999;
 }
 
-.button:hover {background-color: #04AA6D	}
+button:hover {background-color: #04AA6D	}
 
-.button:active {
+button:active {
   background-color: #04AA6D;
   box-shadow: 0 7px #666;
   transform: translateY(6px);
 }
-</sty
 
