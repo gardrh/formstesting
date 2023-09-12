@@ -99,7 +99,7 @@ p {
 /* Button styles */
 select,
 button {
-  padding: 15px 25px;
+  padding: 15px 50px;
   font-size: 24px;
   text-align: center;
   cursor: pointer;
@@ -107,7 +107,7 @@ button {
   color: #fff;
   background-color: #c30000;
   border: none;
-  border-radius: 15px;
+  border-radius: 10px;
   box-shadow: 0 9px #999;
 }
 
