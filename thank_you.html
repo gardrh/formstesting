@@ -2,25 +2,33 @@
 <html>
 <head>
     <title>Thank You</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
 </head>
 <body>
     <h1>Thank You for Your Submission</h1>
-    <p>Your form has been successfully submitted.</p>
+    <p>Your form data:</p>
 
-    <!-- Download link for the PDF -->
-    <a href="#" id="downloadLink">Download Form Data as PDF</a>
+    <form>
+        <!-- Form fields to display the data -->
+        <div>
+            <label for="E-post">E-post:</label>
+            <input type="text" id="E-post" readonly>
+        </div>
+        <!-- Add similar fields for other form data -->
+
+        <!-- Print button -->
+        <button type="button" onclick="window.print()">Print Form</button>
+    </form>
 
     <script>
-        const downloadLink = document.getElementById('downloadLink');
-
-        // Check if PDF data is available and set the download link
-        if (pdfData) {
-            downloadLink.href = pdfData;
-            downloadLink.download = 'form_data.pdf';
-        } else {
-            downloadLink.style.display = 'none';
+        // Function to parse URL parameters and populate the form fields
+        function parseURLParams() {
+            const urlParams = new URLSearchParams(window.location.search);
+            document.getElementById('E-post').value = urlParams.get('E-post');
+            // Add similar lines for other form fields
         }
+
+        // Call the function to populate the form on page load
+        window.onload = parseURLParams;
     </script>
 </body>
 </html>
