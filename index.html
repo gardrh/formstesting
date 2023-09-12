@@ -70,8 +70,16 @@
 </form>
 </div>
 <script>
-  const scriptURL = 'https://script.google.com/macros/s/AKfycbxIdehdScZyKrPhVb2ieREBeX93PFybPl79zSWkFwoWCT3ydimbOWHeXD3MvlRg2aCgvQ/exec'
-  const form = document.forms['submit-to-google-sheet']
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbxIdehdScZyKrPhVb2ieREBeX93PFybPl79zSWkFwoWCT3ydimbOWHeXD3MvlRg2aCgvQ/exec';
+  const form = document.forms['submit-to-google-sheet'];
+  const submitButton = document.getElementById('submitButton');
+            // Add animation to move the button slightly
+            submitButton.style.transform = 'translateY(5px)';
+
+            // Delay the redirection to thank_you.html
+            setTimeout(() => {
+                window.location.href = 'thank_you.html';
+            }, 500); // Adjust the delay time as needed
 
   form.addEventListener('submit', e => {
     e.preventDefault()
