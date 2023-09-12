@@ -35,7 +35,7 @@
   <input name="Kort beskrivelse" type="text" placeholder="Kort beskrivelse">
 
              <h3>Planlagt startdato</h3>
-  <input name="Planlagt startdato" type="date" id="start"  value="" min="2020-01-01" max="2040-12-31" />
+  <input name="Planlagt startdato" type="date" id="start"  value="2020-07-22" min="2020-01-01" max="2040-12-31" />
 
 	  <h3>Deltakere i datainnsamlingen</h3>
     <p>Hvem skal delta i innsiktsarbeidet? Oppgi personer som skal delta i datainnsamling, eller ha tilgang til dataene dere samler inn underveis? <br> 
@@ -68,30 +68,18 @@
 <div class="container">
             <button type="submit" id="submitButton">Send inn</button>
         </form>
-	  <h3 id="message">Thank you for submitting the form.</h3>
-
     </div>
 
 <script>
   const scriptURL = 'https://script.google.com/macros/s/AKfycbxIdehdScZyKrPhVb2ieREBeX93PFybPl79zSWkFwoWCT3ydimbOWHeXD3MvlRg2aCgvQ/exec'
   const form = document.forms['submit-to-google-sheet']
-  const submitButton = document.getElementById("submitButton")
-  const message = document.getElementById("message")
-	
+
   form.addEventListener('submit', e => {
     e.preventDefault()
     fetch(scriptURL, { method: 'POST', body: new FormData(form)})
       .then(response => console.log('Success!', response))
       .catch(error => console.error('Error!', error.message))
   })
-	   // Simulate form submission
-            setTimeout(() => {
-                // Move the button
-                submitButton.classList.add("clicked");
-                // Display the message
-                message.style.display = "block";
-            }, 1000); // Adjust the delay as needed
-        })
 </script>
 
 </body>
