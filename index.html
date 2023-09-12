@@ -3,28 +3,21 @@
 <head>
     <title>Innsikt og datahåndtering i NAV</title>
     <link rel="stylesheet" type="text/css" href="styles.css" />
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 </head>
 <body>
 	<div class = "container">
     <h1>Datahåndteringsplan</h1>
-    <p>Hensikten med dette skjemaet er å gjøre det mulig for deg og ditt team å dokumentere viktige opplysninger knyttet til personvern i forbindelse med brukerinnsikt der samtykke er behandlingsgrunnlag.  Dersom du ikke skal samle inn persondata(lenke) er det ikke nødvendig å lage en datahåndteringsplan. <br>
-	    
-Dersom du skal samle inn persondata (lenke) er det nødvendig å sørge for at du har oversikt over dataene, og dokumentasjon på hvordan disse dataene samles inn, håndteres og slettes. Det er derfor anbefalt (?) å ha en datahåndteringsplan for enhver datainnsamling du gjør. 
-Skjemaet skal fylles ut ved oppstarten av ny datainnsamling. Innholdet i skjemaet hjelper oss å gjennomføre datainnsamlingen i henhold til gjeldende regelverk og sørger for at vi har dokumentasjon på hva slags datainnsamling som har blitt gjennomført i NAV når og i hvilket omfang. 
-	    En datahåndteringsplan hjelper oss også med å holde oversikt over hvem som har, eller har hatt, tilgang til sensitive opplysninger. <br>
-Overholder taushetsplikt. Kun de med tjenstlig behov som har tilgang. Husk at det skal være en sammenheng mellom informasjonen som gis til deltakeren via informasjonsskriv, samtykkeskjema m.m. og datahåndteringsplanen. <br>
-Skjemaet må også fylles ut om man jobber med kontinuerlig produktutvikling. Det er mulig å sette lenger tidsramme for arbeidet, dersom formålet er det samme. Eksempelvis, dersom du jobber med å kontinuerlig forbedre en søknadsdialog over et års tid, 
-	    har brukertester en gang i måneden der du stiller i hovedsak de samme spørsmålene og bruker dataen til det samme formålet vil du ikke behøve en ny datahåndteringsplan hver måned. Da kan du ta i bruk den samme, men sørg for at tidsrammen er satt og at antall deltakere justeres. <br>
-Det er viktig å sette seg inn i etiske retningslinjer når du skal gjennomføre intervjuer, brukertester og annet innsiktsarbeid. Les deg opp på våre artikler som handler om å gjøre innsiktsarbeid på en etisk måte både før, under og etter datainnsamlingen.
-</p>
+    <p>På denne siden kan du legge inn navn, beskrivelse og planlagt tidsramme på innsiktsarbeidet du skal gjøre. Dataen blir sendt til 
+    og lagret at ResearchOpsgjengen i NAV. Hensikten med dette skjemaet er å få en oversikt over innsiktsarbeidene som gjøres i NAV, 
+    og å hjelpe oss som gjør innsiktsarbeid med å sikre at dataene vi samler inn oppbeveras og slettes på en forsvarlig måte.</p>
 
 	    <p> <a href="https://aksel.nav.no/god-praksis/artikler/etikk-nar-du-planlegger-innsiktsarbeid?tema=brukerinnsikt">
 			Les mer  om ting du må huske når du gjør innsiktsarbeid på Aksel </a></p>
         </div>
-    <div class=container>
+        <div class=container>
 	    <h2>Om datainnsamlingen</h2>
 <form name="submit-to-google-sheet">
     <h2>E-post</h2>
@@ -71,77 +64,21 @@ Det er viktig å sette seg inn i etiske retningslinjer når du skal gjennomføre
   <h3>Planlagt dato sluttdato/dato for sletting av personopplysninger</h3>
   <input name="Planlagt sletting" type="date" id="start"  value="2024-01-25" min="2023-01-01" max="2040-12-31" />
 	</div>
-
-<!-- Existing HTML and form elements -->
-	<div>
-            <button type="submit" id="submitButton">Send inn</button>
-        </form>
-    </div>
-
+	
+        <div class=container>
+  <button type="submit">Send inn</button>
+</form>
+</div>
 <script>
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbxIdehdScZyKrPhVb2ieREBeX93PFybPl79zSWkFwoWCT3ydimbOWHeXD3MvlRg2aCgvQ/exec';
-    const form = document.forms['submit-to-google-sheet'];
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbxIdehdScZyKrPhVb2ieREBeX93PFybPl79zSWkFwoWCT3ydimbOWHeXD3MvlRg2aCgvQ/exec'
+  const form = document.forms['submit-to-google-sheet']
 
-    form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-
-        // Disable the submit button
-        const submitButton = document.getElementById('submitButton');
-        submitButton.disabled = true;
-
-        // Serialize the form data
-        const formData = new FormData(form);
-        const formDataObject = {};
-        formData.forEach((value, key) => {
-            formDataObject[key] = value;
-        });
-
-        // Send the form data to the server
-        try {
-            const response = await fetch(scriptURL, {
-                method: 'POST',
-                body: JSON.stringify(formDataObject),
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            });
-
-            if (response.ok) {
-                // Display form answers on the page
-                displayFormAnswers(formDataObject);
-            } else {
-                throw new Error('Error submitting the form');
-            }
-        } catch (error) {
-            console.error('Error:', error);
-        }
-    });
-
-    function displayFormAnswers(formDataObject) {
-        const answersContainer = document.createElement('div');
-        answersContainer.classList.add('form-answers');
-        const heading = document.createElement('h2');
-        heading.textContent = 'Form Answers';
-        const ul = document.createElement('ul');
-
-        for (const key in formDataObject) {
-            const li = document.createElement('li');
-            li.innerHTML = `<strong>${key}:</strong> ${formDataObject[key]}`;
-            ul.appendChild(li);
-        }
-
-        answersContainer.appendChild(heading);
-        answersContainer.appendChild(ul);
-
-        // Append answers to the page
-        const container = document.querySelector('.container');
-        container.appendChild(answersContainer);
-    }
+  form.addEventListener('submit', e => {
+    e.preventDefault()
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      .then(response => console.log('Success!', response))
+      .catch(error => console.error('Error!', error.message))
+  })
 </script>
-
-</body>
-</html>
-
-
 </body>
 </html>
