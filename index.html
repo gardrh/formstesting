@@ -78,33 +78,17 @@ Det er viktig å sette seg inn i etiske retningslinjer når du skal gjennomføre
 </form>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
-<script>
-   const scriptURL = 'https://script.google.com/macros/s/AKfycbxIdehdScZyKrPhVb2ieREBeX93PFybPl79zSWkFwoWCT3ydimbOWHeXD3MvlRg2aCgvQ/exec';
-   const form = document.forms['submit-to-google-sheet'];
-   const submitButton = document.getElementById('submitButton');
-   let pdfData = null;
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxIdehdScZyKrPhVb2ieREBeX93PFybPl79zSWkFwoWCT3ydimbOWHeXD3MvlRg2aCgvQ/exec';
+        const form = document.forms['submit-to-google-sheet'];
 
-   form.addEventListener('submit', e => {
-       e.preventDefault();
-
-       // Generate a PDF from form data
-       const pdf = new jsPDF();
-       pdf.text(10, 10, 'Form Data:');
-       const formData = new FormData(form);
-       let yPos = 20;
-       for (const pair of formData.entries()) {
-           pdf.text(10, yPos, `${pair[0]}: ${pair[1]}`);
-           yPos += 10;
-       }
-
-       // Store the PDF data
-       pdfData = pdf.output('datauristring');
-
-       // Redirect to the thank you page
-       window.location.href = 'thank_you.html';
-   });
-</script>
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+                .then(response => console.log('Success!', response))
+                .catch(error => console.error('Error!', error.message))
+        });
+    </script>
 
 
 </body>
