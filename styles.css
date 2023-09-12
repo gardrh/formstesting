@@ -105,10 +105,6 @@ button {
   color: #ffffff;
 }
 
-select:focus,
-button:focus {
-  outline: none;
-}
 .button {
   transition-duration: 0.4s;
 }
@@ -119,7 +115,6 @@ button:focus {
 }
 
   .button:active {
-  background-color: #3e8e41;
   box-shadow: 0 5px #666;
   transform: translateY(6px);
 }
