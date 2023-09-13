@@ -42,9 +42,20 @@
 	    Oppgi alle som potensielt skal ha tilgang til dataene dere samler inn. </p>
   <input name="Deltakere" type="text" placeholder="Ola Tveiten (grøftegraver), Margit Hjukse (Storgårdsdatter), Bianca Bals (Tante Pose)">
 	
-  <h3>Hvem skal det samles inn opplysninger om?</h3>
-    <p>Ansatte, brukere, eller andre? </p>
-  <input name="Målgruppe" type="text" placeholder="Ansatte, brukere, eller andre?">
+<h3>Hvem skal det samles inn opplysninger om?</h3>
+<div>
+    <input type="checkbox" id="sluttbrukere" name="Målgruppe[]" value="Sluttbrukere/innbyggere">
+    <label for="sluttbrukere">Sluttbrukere/innbyggere</label>
+</div>
+<div>
+    <input type="checkbox" id="nav-ansatte" name="Målgruppe[]" value="NAV-ansatte">
+    <label for="nav-ansatte">NAV-ansatte</label>
+</div>
+<div>
+    <input type="checkbox" id="andre" name="Målgruppe[]" value="Andre">
+    <label for="andre">Andre</label>
+</div>
+
 
 	  <h3>Tilknyttet team/PO/avdeling eller lignende?</h3>
     <p>Er innsiktsarbeidet/datainnsamlingen tilknyttet en større enhet, oppgi hvilket. Oppgi også et svar om ingen av de øvrige kategoriene passer. </p>
@@ -71,16 +82,27 @@
     </div>
 
 <script>
-  const scriptURL = 'https://script.google.com/macros/s/AKfycbxIdehdScZyKrPhVb2ieREBeX93PFybPl79zSWkFwoWCT3ydimbOWHeXD3MvlRg2aCgvQ/exec'
-  const form = document.forms['submit-to-google-sheet']
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbxIdehdScZyKrPhVb2ieREBeX93PFybPl79zSWkFwoWCT3ydimbOWHeXD3MvlRg2aCgvQ/exec';
+  const form = document.forms['submit-to-google-sheet'];
 
   form.addEventListener('submit', e => {
-    e.preventDefault()
-    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+    e.preventDefault();
+
+    // Get selected checkboxes and store them as an array
+    const selectedMålgruppe = Array.from(form.querySelectorAll('input[name="Målgruppe[]"]:checked'))
+      .map(checkbox => checkbox.value);
+
+    // Create a new FormData object with updated Målgruppe value
+    const formData = new FormData(form);
+    formData.set('Målgruppe', selectedMålgruppe.join(', '));
+
+    // Send the updated formData to the script URL
+    fetch(scriptURL, { method: 'POST', body: formData })
       .then(response => console.log('Success!', response))
-      .catch(error => console.error('Error!', error.message))
-  })
+      .catch(error => console.error('Error!', error.message));
+  });
 </script>
+
 
 </body>
 </html>
