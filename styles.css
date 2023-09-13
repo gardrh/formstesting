@@ -23,6 +23,7 @@ body {
             height: 30px;
             padding: 10px; /* Adjust padding for better appearance */
             font-size: 16px; /* Adjust font size */}
+
 .container input[type="date"] {
             width: 60%; /* Set the width to 100% to expand to the container's width */
             height: 30px;
@@ -30,10 +31,10 @@ body {
             font-size: 16px; /* Adjust font size */}
 
 .container input[type="checkbox"] {
-  width: auto; /* Reset the width to its default value */
+  width: 50%; /* Reset the width to its default value */
   height: 20px; /* Adjust the height to your preference */
-  margin-right: 5px; /* Add some spacing between checkboxes */
-  vertical-align: middle; /* Align checkboxes vertically with text */
+  margin-right: 10px; /* Add some spacing between checkboxes */
+  vertical-align: left; /* Align checkboxes to the left with text */
 }
 
 .container input[type="email"] {
