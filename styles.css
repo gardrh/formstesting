@@ -29,6 +29,13 @@ body {
             padding: 10px; /* Adjust padding for better appearance */
             font-size: 16px; /* Adjust font size */}
 
+.container input[type="checkbox"] {
+  width: auto; /* Reset the width to its default value */
+  height: 20px; /* Adjust the height to your preference */
+  margin-right: 5px; /* Add some spacing between checkboxes */
+  vertical-align: middle; /* Align checkboxes vertically with text */
+}
+
 .container input[type="email"] {
             width: 80%; /* Set the width to 100% to expand to the container's width */
             height: 30px;
